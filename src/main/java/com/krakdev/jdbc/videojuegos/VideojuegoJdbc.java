@@ -183,4 +183,36 @@ public class VideojuegoJdbc {
 	  }
 		return videojuego;
 	}
+	
+	public static boolean eliminar(String codigo) {
+		Connection con = null;
+		PreparedStatement ps = null;
+    	String sqlDelete = "DELETE FROM videojuegos WHERE codigo = ?";
+		ResultSet rs = null; 
+		
+		try {
+        	con = Conexion.getConnection();
+            ps = con.prepareStatement(sqlDelete);
+            
+            ps.setString(1, codigo);
+            
+            rs = ps.executeQuery();
+            
+            int fila = ps.executeUpdate();
+            
+            return true;
+            
+		} catch (Exception e) {
+			Log.error("Error al eliminar el videojuego.", e);
+			return false;
+			
+		} finally {
+        	try {
+        		con.close();        	
+            } catch (SQLException e) {
+        	    e.printStackTrace();
+            }
+	    }
+		
+	}
 }
