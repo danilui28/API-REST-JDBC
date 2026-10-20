@@ -24,7 +24,7 @@ public class ServicioVideojuegoJdbc {
 	}
 	
 	public Videojuego actualizar(String codigo, Videojuego videojuegoActualizado) {
-		return VideojuegoJdbc.insertar(codigo, videojuegoActualizado.getNombre(), videojuegoActualizado.getPlataforma(), 
+		return VideojuegoJdbc.actualizar(codigo, videojuegoActualizado.getNombre(), videojuegoActualizado.getPlataforma(), 
 				videojuegoActualizado.getPrecio(), videojuegoActualizado.isDisponible(), videojuegoActualizado.getGenero());
 	}
 	

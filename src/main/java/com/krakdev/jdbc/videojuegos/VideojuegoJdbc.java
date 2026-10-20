@@ -53,7 +53,13 @@ public class VideojuegoJdbc {
             
         } finally {
         	try {
-        		con.close();        	
+                if (ps != null) {
+                    ps.close();
+                }
+
+                if (con != null) {
+                    con.close();
+                }       	
             } catch (SQLException e) {
         	    e.printStackTrace();
             }
@@ -105,7 +111,17 @@ public class VideojuegoJdbc {
 			
 		} finally {
         	try {
-        		con.close();        	
+                    if (rs != null) {
+                        rs.close();
+                    }
+
+                    if (ps != null) {
+                        ps.close();
+                    }
+
+                    if (con != null) {
+                        con.close();
+                    }      	
             } catch (SQLException e) {
         	    e.printStackTrace();
             }
@@ -139,7 +155,17 @@ public class VideojuegoJdbc {
 			
 		} finally {
         	try {
-        		con.close();        	
+                if (rs != null) {
+                    rs.close();
+                }
+
+                if (ps != null) {
+                    ps.close();
+                }
+
+                if (con != null) {
+                    con.close();
+                }      	
             } catch (SQLException e) {
         	    e.printStackTrace();
             }
@@ -176,7 +202,13 @@ public class VideojuegoJdbc {
 		
 	} finally {
     	try {
-    		con.close();        	
+            if (ps != null) {
+                ps.close();
+            }
+
+            if (con != null) {
+                con.close();
+            }       	
         } catch (SQLException e) {
     	    e.printStackTrace();
         }
@@ -187,16 +219,13 @@ public class VideojuegoJdbc {
 	public static boolean eliminar(String codigo) {
 		Connection con = null;
 		PreparedStatement ps = null;
-    	String sqlDelete = "DELETE FROM videojuegos WHERE codigo = ?";
-		ResultSet rs = null; 
 		
 		try {
         	con = Conexion.getConnection();
+        	String sqlDelete = "DELETE FROM videojuegos WHERE codigo = ?";
             ps = con.prepareStatement(sqlDelete);
             
             ps.setString(1, codigo);
-            
-            rs = ps.executeQuery();
             
             int fila = ps.executeUpdate();
             
@@ -208,7 +237,13 @@ public class VideojuegoJdbc {
 			
 		} finally {
         	try {
-        		con.close();        	
+                if (ps != null) {
+                    ps.close();
+                }
+
+                if (con != null) {
+                    con.close();
+                }       	
             } catch (SQLException e) {
         	    e.printStackTrace();
             }
